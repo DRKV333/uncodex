@@ -342,3 +342,40 @@ TD.source {
 	visibility: hidden;
 	position: absolute;
 }
+
+.search_box {
+	position: relative;
+	margin: 15px;
+}
+
+.search_box INPUT {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.search_box BUTTON {
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	height: calc(100% - 4px);
+	background-color: #DDD8F5;
+	border: 1px solid #cec9f1;
+	color: white;
+	cursor: pointer;
+}
+
+.search_box BUTTON:after {
+	content: 'X';
+	font-size: 10px;
+	line-height: 0;
+}
+
+.search_box BUTTON:hover {
+	background-color: #C6BEEF;
+	border: 1px solid #6919B3;
+	color: #6919B3;
+}
+
+.search_box:not(:valid) BUTTON {
+	display: none;
+}

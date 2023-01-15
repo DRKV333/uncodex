@@ -9,15 +9,38 @@
 
 %if:has_interfaces%
 <h3>Interfaces</h3>
-<table class="class_list">
-%interfaces_list%
+
+<form class="search_box">
+	<input id="interfaces_search" type="text" required />
+	<button type="reset"></button>
+</form>
+
+<table id="interfaces_list" class="class_list">
 </table>
 %endif%
 
 <h3>Classes</h3>
-<table class="class_list">
-%classes_list%
+
+<form class="search_box">
+	<input id="classes_search" type="text" required />
+	<button type="reset"></button>
+</form>
+
+<table id="classes_list" class="class_list">
 </table>
+
+<script src="%parentdir%listsearch.js"></script>
+<script>
+	let template = '<tr><td class="class_list"><a href="$link$" target="content">$name$</a></td></tr>';
+	new Listsearch('classes_search', 'classes_list', template, [
+%classes_list%
+	]);
+%if:has_interfaces%
+	new Listsearch('interfaces_search', 'interfaces_list', template, [
+%interfaces_list%
+	]);
+%endif%
+</script>
 
 </body>
 </html>

@@ -6,10 +6,25 @@
 %include:stylesheet.inc%
 </head>
 <body>
+
 <b><a href="%classes_list_link%" target="classes">All classes</a></b>
+
 <h3>Packages</h3>
-<table class="packages_list">
-%packages_list%
+
+<form class="search_box">
+	<input id="search" type="text" required />
+	<button type="reset"></button>
+</form>
+
+<table id="list" class="packages_list">
 </table>
+
+<script src="%parentdir%listsearch.js"></script>
+<script>
+	new Listsearch('search', 'list', '<tr><td class="packages_list"><a href="$link$" target="classes">$name$</a></td></tr>', [
+%packages_list%
+	]);
+</script>
+
 </body>
 </html>
