@@ -5,6 +5,14 @@ class Listsearch {
 		this.template = template;
 		this.entries = entries;
 
+		this.list.innerHTML = '';
+		for (const entry of this.entries) {
+			entry.lower = entry.name.toLowerCase();
+			
+			this.list.insertAdjacentHTML('beforeend', this.template.replace('$link$', entry.link).replace('$name$', entry.name));
+			entry.element = this.list.lastChild;
+		}
+
 		this.search.addEventListener('input', this.handleSearchInput.bind(this));
 		this.search.parentElement.addEventListener('reset', this.handleReset.bind(this));
 		this.handleSearchInput();
@@ -16,16 +24,12 @@ class Listsearch {
 	}
 
 	handleSearchInput() {
-		this.list.innerHTML = '';
-	
-		let entriesToShow = this.entries;
-		if (this.search.value != '') {
-			let lookFor = this.search.value.toLowerCase();
-			entriesToShow = entriesToShow.filter(x => x.name.toLowerCase().includes(lookFor));
-		}
-	
-		for (const entry of entriesToShow) {
-			this.list.insertAdjacentHTML('beforeend', this.template.replace('$link$', entry.link).replace('$name$', entry.name));
+		const lookFor = this.search.value.toLowerCase();
+		for (const entry of this.entries) {
+			if (lookFor == '' || entry.lower.includes(lookFor))
+				entry.element.style.removeProperty('display');
+			else
+				entry.element.style.display = 'none';
 		}
 	}
 }

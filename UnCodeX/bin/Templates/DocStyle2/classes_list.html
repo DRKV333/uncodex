@@ -31,7 +31,7 @@
 
 <script src="%parentdir%listsearch.js"></script>
 <script>
-	let template = '<tr><td class="class_list"><a href="$link$" target="content">$name$</a></td></tr>';
+	const template = '<tr><td class="class_list"><a href="$link$" target="content">$name$</a></td></tr>';
 	new Listsearch('classes_search', 'classes_list', template, [
 %classes_list%
 	]);
